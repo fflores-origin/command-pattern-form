@@ -40,7 +40,7 @@ namespace CP.Presentation
             ICommand command = new AddCommand(_receiver);
             _receiver.SetNumber(double.Parse(input.Text));
             _invoker.TakeOrder(command);
-            _invoker.Process();
+            //_invoker.Process();
             lblResult.Text = _receiver.Result.ToString();
             input.Text = "0";
         }
@@ -52,7 +52,7 @@ namespace CP.Presentation
             ICommand command = new SubstractCommand(_receiver);
             _receiver.SetNumber(double.Parse(input.Text));
             _invoker.TakeOrder(command);
-            _invoker.Process();
+            //_invoker.Process();
             lblResult.Text = _receiver.Result.ToString();
             input.Text = "0";
         }
