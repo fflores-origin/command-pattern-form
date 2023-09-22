@@ -36,16 +36,16 @@ namespace CP.Core
 
         public void ExecuteCommand() => currentCommand.Execute();
 
-        public void Add()
+        public void Add(double operand)
         {
-            result += currentNumber;
+            result += operand;
             if (_useDB)
                 _ordenesRepository.SaveOrUpdate("ADD", currentNumber.ToString());
         }
 
-        public void Subtract()
+        public void Subtract(double operand)
         {
-            result -= currentNumber;
+            result -= operand;
             if (_useDB)
                 _ordenesRepository.SaveOrUpdate("SUBSTRACT", currentNumber.ToString());
         }

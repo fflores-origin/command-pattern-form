@@ -2,13 +2,21 @@
 {
     public class SubstractCommand : ICommand
     {
-        public SubstractCommand(CalculatorReceiver receiver) : base(receiver)
+        private double _operand;
+
+        public SubstractCommand(CalculatorReceiver receiver, double operand) : base(receiver)
         {
+            _operand = operand;
         }
 
         public override void Execute()
         {
-            _receiver.Subtract();
+            _receiver.Subtract(_operand);
+        }
+
+        public override void Undo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

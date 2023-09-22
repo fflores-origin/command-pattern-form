@@ -4,6 +4,8 @@
     {
         public abstract void Execute();
 
+        public abstract void Undo();
+
         protected CalculatorReceiver _receiver;
 
         public ICommand(CalculatorReceiver receiver)
