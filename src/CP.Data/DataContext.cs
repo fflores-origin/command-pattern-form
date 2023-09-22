@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace CP.Data
 {
-    public class DataContext
+    public class DataContext : IConnection
     {
         private readonly IConfiguration _configuration;
         private string _coonectionString;

@@ -4,17 +4,16 @@ namespace CP.Presentation
 {
     public partial class Main : Form
     {
-        private readonly CalculatorReceiver _receiver = new CalculatorReceiver();
-        private readonly OperationsInvoker _invoker = new OperationsInvoker();
-        private readonly List<string> _history = new List<string>();
-        private double _value = 0;
+        private readonly CalculatorReceiver _receiver;
+        private readonly OperationsInvoker _invoker = new();
+        private readonly List<string> _history = new();
 
-        private string historyToAdd = "";
         private bool shouldClean = false;
 
-        public Main()
+        public Main(CalculatorReceiver receiver)
         {
             InitializeComponent();
+            _receiver = receiver;
         }
 
         private void SetButtonValue(int value)
@@ -25,11 +24,9 @@ namespace CP.Presentation
 
             if (input.Text == "0")
             {
-                _value = value;
                 valueAsText = $"{value}";
             }
 
-            _value = double.Parse(valueAsText);
             input.Text = valueAsText;
         }
 
@@ -74,6 +71,8 @@ namespace CP.Presentation
             lbHistory.Items.AddRange(_history.ToArray());
         }
 
+        #region NumbersButtonsAction
+
         private void btn9_Click(object sender, EventArgs e) => SetButtonValue(9);
 
         private void btn8_Click(object sender, EventArgs e) => SetButtonValue(8);
@@ -99,5 +98,7 @@ namespace CP.Presentation
             _receiver.Clear();
             input.Text = "0";
         }
+
+        #endregion NumbersButtonsAction
     }
 }
