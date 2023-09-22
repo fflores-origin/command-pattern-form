@@ -1,4 +1,5 @@
 ﻿using CP.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace CP.Core
 {
@@ -8,8 +9,17 @@ namespace CP.Core
         private double currentNumber = 0;
         private ICommand currentCommand;
         private readonly OrdenesRepository _ordenesRepository;
+        private readonly IConfiguration _configuration;
 
-        public CalculatorReceiver(OrdenesRepository ordenesRepository) => _ordenesRepository = ordenesRepository;
+        private readonly bool _useDB;
+
+        public CalculatorReceiver(OrdenesRepository ordenesRepository, IConfiguration configuration)
+        {
+            _ordenesRepository = ordenesRepository;
+            _configuration = configuration;
+
+            _useDB = Convert.ToBoolean(_configuration["Initial:UseDb"]);
+        }
 
         public double Result
         { get { return result; } }
@@ -29,13 +39,15 @@ namespace CP.Core
         public void Add()
         {
             result += currentNumber;
-            _ordenesRepository.SaveOrUpdate("ADD", currentNumber.ToString());
+            if (_useDB)
+                _ordenesRepository.SaveOrUpdate("ADD", currentNumber.ToString());
         }
 
         public void Subtract()
         {
             result -= currentNumber;
-            _ordenesRepository.SaveOrUpdate("SUBSTRACT", currentNumber.ToString());
+            if (_useDB)
+                _ordenesRepository.SaveOrUpdate("SUBSTRACT", currentNumber.ToString());
         }
     }
 }
