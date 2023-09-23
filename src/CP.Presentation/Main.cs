@@ -35,9 +35,7 @@ namespace CP.Presentation
             _history.Add($"+ {input.Text}");
             UpdateHistoryListBox();
             ICommand command = new AddCommand(_receiver, double.Parse(input.Text));
-            //_receiver.SetNumber(double.Parse(input.Text));
             _invoker.TakeOrder(command);
-            //_invoker.Process();
             lblResult.Text = _receiver.Result.ToString();
             input.Text = "0";
         }
@@ -47,9 +45,7 @@ namespace CP.Presentation
             _history.Add($"- {input.Text}");
             UpdateHistoryListBox();
             ICommand command = new SubstractCommand(_receiver, double.Parse(input.Text));
-            //_receiver.SetNumber(double.Parse(input.Text));
             _invoker.TakeOrder(command);
-            //_invoker.Process();
             lblResult.Text = _receiver.Result.ToString();
             input.Text = "0";
         }
